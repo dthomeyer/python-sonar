@@ -48,6 +48,6 @@ jobs:
         SONAR_TOKEN_ENV_VAR: ${{ secrets.SONAR_TOKEN }} 
       with:
         args: >
-          -Dsonar.organization=YOUR_ORGANIZATION_KEY
-          -Dsonar.projectKey=YOUR_PROJECT_KEY
+          -Dsonar.organization=${{ env.YOUR_ORGANIZATION_KEY }}
+          -Dsonar.projectKey=${{ env.YOUR_PROJECT_KEY }}
           -Dsonar.python.coverage.reportPaths=coverage.xml
