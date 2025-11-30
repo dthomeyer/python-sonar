@@ -52,3 +52,4 @@ jobs:
           -Dsonar.organization=${{ env.SONAR_ORG_KEY }}
           -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
           -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.branch.name=main
