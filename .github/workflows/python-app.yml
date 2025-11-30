@@ -44,10 +44,11 @@ jobs:
       uses: SonarSource/sonarqube-scan-action@v4
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # Replace these with the values from SonarCloud setup:
-        SONAR_TOKEN_ENV_VAR: ${{ secrets.SONAR_TOKEN }} 
+        SONAR_TOKEN_ENV_VAR: ${{ secrets.SONAR_TOKEN }}
+        SONAR_ORG_KEY: ${{ env.YOUR_ORGANIZATION_KEY }}
+        SONAR_PROJECT_KEY: ${{ env.YOUR_PROJECT_KEY }}
       with:
         args: >
-          -Dsonar.organization=${{ env.YOUR_ORGANIZATION_KEY }}
-          -Dsonar.projectKey=${{ env.YOUR_PROJECT_KEY }}
+          -Dsonar.organization=${{ env.SONAR_ORG_KEY }}
+          -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
           -Dsonar.python.coverage.reportPaths=coverage.xml
