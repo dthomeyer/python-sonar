@@ -35,5 +35,19 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      # Update this step to generate a coverage report
       run: |
-        pytest
+        pip install pytest pytest-cov
+        pytest --cov --cov-report=xml
+
+    - name: SonarQube Cloud Scan
+      uses: SonarSource/sonarqube-scan-action@v4
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # Replace these with the values from SonarCloud setup:
+        SONAR_TOKEN_ENV_VAR: ${{ secrets.SONAR_TOKEN }} 
+      with:
+        args: >
+          -Dsonar.organization=YOUR_ORGANIZATION_KEY
+          -Dsonar.projectKey=YOUR_PROJECT_KEY
+          -Dsonar.python.coverage.reportPaths=coverage.xml
